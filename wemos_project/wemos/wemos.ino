@@ -14,13 +14,6 @@ int errorPin = D6;
 int successPin = D1;
 int state = 0;
 
-// Twilio Parameter
-String account_sid = "AC0a2388dbeca185eb482d56aa897e7344";
-String auth_token = "b4e5175e651781740a63b3d55dc60ea9";
-String from = "14124447822";
-String to = "6285757882739";
-String body = "Ada penyusup masuk kerumah mu!";
-
 void setup() {
  
   // Serial.begin(115200);
@@ -78,7 +71,6 @@ Serial.println(state);
         http.end();
         
       }
-
         digitalWrite(successPin, HIGH);
         delay(3000);
         digitalWrite(successPin, LOW);
