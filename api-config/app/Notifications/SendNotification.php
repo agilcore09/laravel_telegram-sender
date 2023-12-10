@@ -40,7 +40,7 @@ class SendNotification extends Notification
      */
     public function toTelegram($notifiable)
     {
-        $maling = public_path('azizi luv.jpg');
+        $maling = public_path('maling.jpg');
         return TelegramFile::create()
             ->to($notifiable)
             ->content('Warning........ Ada penyusup!!!!!!!!!!')

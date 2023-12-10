@@ -7,34 +7,30 @@
 const char* ssid = "Sanzu";
 const char* password = "menjadimesin";
 
-// read sensor
+// setup pin sensor and speaker buzzer
 const int sensorPin = A0;
 int speakerPin = D5;
-int errorPin = D6;
-int successPin = D1;
 int state = 0;
 
 void setup() {
- 
-  // Serial.begin(115200);
   Serial.begin(9600);
+  // wifi auth check
   WiFi.begin(ssid, password);
   
+  // setup pin mode 
   pinMode(sensorPin,INPUT);
   pinMode(speakerPin, OUTPUT);
-
   pinMode(successPin, OUTPUT);
   pinMode(errorPin, OUTPUT);
   
+  // check wifi authenticate
+  // jika wifi autentikasi gagal
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
     Serial.println("Connecting to WiFi..");
-    digitalWrite(errorPin, HIGH);
-    delay(300);
-    digitalWrite(errorPin, LOW);
-    delay(300);
   }
 
+  // jika autentikasi berhasil
   Serial.println("Connected to WiFi");
 }
  
@@ -48,12 +44,9 @@ Serial.println(state);
 
         WiFiClient client;
         HTTPClient http;
-     
-        int nilai = random(29,37);
-        String data = (String) nilai;
     
-        String link = "http://127.0.0.1:8000/api/sender";
-      
+        String link = "http://www.agilamanesu/api/sender";
+  
         http.begin(client, link);
         int httpCode = http.GET();
         Serial.println("ini http Code");
@@ -71,10 +64,6 @@ Serial.println(state);
         http.end();
         
       }
-        digitalWrite(successPin, HIGH);
-        delay(3000);
-        digitalWrite(successPin, LOW);
-        delay(1000);
 
       digitalWrite(speakerPin, HIGH);
       delay(3000);
